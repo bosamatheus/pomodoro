@@ -9,7 +9,7 @@
     padding: 20px;
 }
 
-.control {
+.info {
     text-align: center;
     font-weight: bold;
     display: grid;
@@ -17,17 +17,17 @@
     grid-auto-rows: 200px;
 }
 
-.control .session {
+.info .session {
     font-size: 14px;
     margin-top: 70px;
 }
 
-.control .break {
+.info .break {
     font-size: 14px;
     margin-top: 70px;
 }
 
-.control .input-minutes {
+.info .input-minutes {
     font-size: 14px;
     font-weight: bold;
     text-align: center;
@@ -113,8 +113,8 @@ input::-webkit-inner-spin-button {
     background: #6b8e23;
     border-radius: 50%;
     padding: 5px;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     margin: 10px auto;
     cursor: pointer;
     transition-duration: 0.4s;
@@ -133,8 +133,8 @@ input::-webkit-inner-spin-button {
     background: red;
     border-radius: 50%;
     padding: 5px;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     margin: 10px auto;
     cursor: pointer;
     transition-duration: 0.4s;
@@ -146,60 +146,59 @@ input::-webkit-inner-spin-button {
     transition: all 0.3s ease 0s;
 }
 
+.control {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .button.start {
+    background-color: #333;
     border-color: #333 #333 #333 #6b8e23;
     border-width: 37px 0 37px 60px;
     border-style: solid;
     margin-top: 20px;
-    box-sizing: border-box;
-    width: 74px;
-    height: 74px;
+    margin-right: 10px;
+    width: 70px;
+    height: 70px;
     cursor: pointer;
 }
 
 .button.start:hover {
-    box-shadow: 5px 40px -10px #333;
     transition: all 0.4s ease 0s;
 }
 
 .button.pause {
     background-color: #333;
     border-color: #333 #333 #333 red;
-    border-style: double;
     border-width: 0px 0 0px 50px;
+    border-style: double;
     margin-top: 20px;
-    width: 74px;
-    height: 74px;
+    margin-right: 10px;
+    width: 70px;
+    height: 70px;
     cursor: pointer;
 }
 
 .button.pause:hover {
-    box-shadow: 5px 40px -10px #333;
     transition: all 0.4s ease 0s;
 }
 
 .button.stop {
     background-color: #6b8e23;
     border-radius: 10%;
-    width: 60px;
-    height: 60px;
+    margin-top: 20px;
+    margin-left: 10px;
+    width: 70px;
+    height: 70px;
     cursor: pointer;
 }
 
 .button.stop:hover {
     background: red;
     font-weight: 700 !important;
-    letter-spacing: 3px;
     transition: all 0.3s ease 0s;
-}
-
-.custom-form .minutes {
-    font-size: 12px;
-    text-align: center;
-    border-style: solid;
-    border-radius: 50px;
-    width: 80px;
-    height: 20px;
 }
 
 .progressbar {

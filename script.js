@@ -17,7 +17,6 @@ var pomodoro = {
     inputSessionDOM: null,
     inputBreakDOM: null,
     progressDOM: null,
-    alarmSound: null,
 
     resetVariables: function() {
         this.isStarted = false;
@@ -37,7 +36,6 @@ var pomodoro = {
         this.inputSessionDOM.value = 25;
         this.inputBreakDOM.value = 5
         this.progressDOM.style.width = 0;
-        if (!this.alarmSound.paused) this.alarmSound.pause();
     },
 
     setSessionAndBreakTime: function(btn) {
@@ -72,10 +70,9 @@ var pomodoro = {
         this.buttonPlayDOM = document.getElementById('button-play');
         this.timerDisplayDOM = document.querySelector('.display-time');
         this.messageDOM = document.querySelector('.message');
-        this.inputSessionDOM = document.getElementById('session-minutes')
-        this.inputBreakDOM = document.getElementById('break-minutes')
+        this.inputSessionDOM = document.getElementById('session-minutes');
+        this.inputBreakDOM = document.getElementById('break-minutes');
         this.progressDOM = document.querySelector('.progress');
-        this.alarmSound = document.getElementById("alarm-sound");
         this.buttonPlayDOM.className = 'button start';
         this.messageDOM.innerHTML = ''
 
@@ -133,8 +130,6 @@ var pomodoro = {
     },
 
     resetTime: function() {
-        if (!this.alarmSound.paused) this.alarmSound.pause();
-
         this.progressActual = 0;
         this.progressDOM.style.width = 0;
 
@@ -145,12 +140,14 @@ var pomodoro = {
 
     timer: function() {
         clearInterval(this.countdown)
+
         this.messageDOM.innerHTML = `${this.isSession ? 'Session' : 'Break'}`;
         this.displayTimeLeft();
 
         const now = Date.now();
         const then = now + this.currentTime * 1000;
-        this.progressIncrement = this.progressTotal / this.currentTime;
+
+        if (this.progressActual == 0) this.progressIncrement = this.progressTotal / this.currentTime;
 
         this.countdown = setInterval(() => {
 
@@ -158,11 +155,25 @@ var pomodoro = {
 
             if (this.currentTime < 0) {
 
-                this.alarmSound.play();
-                alert(`${this.isSession ? 'Session' : 'Break'} is over!`);
+                let playPromise = document.getElementById('alarm-sound').play();
 
-                this.isSession = !this.isSession;
-                this.resetTime();
+                // In browsers that don’t yet support this functionality, playPromise won’t be defined
+                if (playPromise !== undefined) {
+
+                    const self = this;
+
+                    playPromise.then(function() {
+                        // Automatic playback started
+                    }).catch(function(error) {
+                        console.log(error);
+                    }).finally(function() {
+                        document.title = '(00:00) Pomodoro';
+                        self.timerDisplayDOM.innerHTML = '00:00';
+                        alert(`${self.isSession ? 'Session' : 'Break'} is over!`);
+                        self.isSession = !self.isSession;
+                        self.resetTime();
+                    });
+                }
             }
 
             this.progressActual += this.progressIncrement;

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Pomodoro</title>
+    <title>(25:00) Pomodoro</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
     <link rel="stylesheet" type="text/css" media="screen" href="styles.css">
@@ -15,11 +15,12 @@
         <div class="container">
             <h1>Pomodoro Timer</h1>
 
-            <button data-time="60" class="button time">Just 1</button>
-            <button data-time="900" class="button time">Quick 15</button>
+            <button data-time="300" class="button time">Just 5</button>
             <button data-time="1500" class="button time">Pomo 25</button>
+            <button data-time="2700" class="button time">Quick 45</button>
+            <button data-time="3600" class="button time">Lunch 60</button>
 
-            <div class="control">
+            <div class="info">
                 <div class="session">
                     <h1>Session</h1>
                     <div class="number-input">
@@ -49,13 +50,15 @@
                 <div class="progress"></div>
             </div>
 
-            <button id="button-play" class="button start"></button>
-            <button id="button-stop" class="button stop"></button>
+            <div class="control">
+                <button id="button-play" class="button start"></button>
+                <button id="button-stop" class="button stop"></button>
+            </div>
 
             <p class="footer">Developed by Matheus Bosa</p>
         </div>
 
-        <audio id="alarm-sound" loop>
+        <audio id="alarm-sound">
             <source src="clock.mp3" type="audio/mp3">
         </audio>
     </div>
