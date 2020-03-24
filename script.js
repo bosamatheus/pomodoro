@@ -167,6 +167,7 @@ var pomodoro = {
                     }).catch(function(error) {
                         console.log(error);
                     }).finally(function() {
+                        clearInterval(self.countdown)
                         document.title = '(00:00) Pomodoro';
                         self.timerDisplayDOM.innerHTML = '00:00';
                         alert(`${self.isSession ? 'Session' : 'Break'} is over!`);
