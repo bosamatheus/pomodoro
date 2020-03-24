@@ -8,7 +8,7 @@ var pomodoro = {
     currentTime: 0,
 
     progressTotal: 0,
-    progressActual: 0,
+    currentProgress: 0,
     progressIncrement: 0,
 
     buttonPlayDOM: null,
@@ -28,7 +28,7 @@ var pomodoro = {
         this.breakTime = 300;
         this.currentTime = this.sessionTime;
 
-        this.progressActual = 0;
+        this.currentProgress = 0;
         this.progressIncrement = 0;
 
         this.buttonPlayDOM.className = 'button start';
@@ -86,7 +86,7 @@ var pomodoro = {
         this.currentTime = this.sessionTime;
 
         this.progressTotal = parseInt(getComputedStyle(document.querySelector('.progressbar')).width.replace('px', ''));
-        this.progressActual = 0;
+        this.currentProgress = 0;
         this.progressIncrement = 0;
 
         this.buttonPlayDOM.onclick = () => {
@@ -130,7 +130,7 @@ var pomodoro = {
     },
 
     resetTime: function() {
-        this.progressActual = 0;
+        this.currentProgress = 0;
         this.progressDOM.style.width = 0;
 
         this.currentTime = (this.isSession ? this.sessionTime : this.breakTime);
@@ -147,7 +147,7 @@ var pomodoro = {
         const now = Date.now();
         const then = now + this.currentTime * 1000;
 
-        if (this.progressActual == 0) this.progressIncrement = this.progressTotal / this.currentTime;
+        if (this.currentProgress == 0) this.progressIncrement = this.progressTotal / this.currentTime;
 
         this.countdown = setInterval(() => {
 
@@ -176,8 +176,8 @@ var pomodoro = {
                 }
             }
 
-            this.progressActual += this.progressIncrement;
-            this.progressDOM.style.width = this.progressActual + 'px';
+            this.currentProgress += this.progressIncrement;
+            this.progressDOM.style.width = this.currentProgress + 'px';
 
             this.displayTimeLeft();
         }, 1000);
