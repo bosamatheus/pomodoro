@@ -2,4 +2,4 @@
 
 Task timer to aid personal productivity using just Vanilla JS and CSS.
 
-See: [Pomodoro Timer](https://bosamatheus.github.io/pomodoro/)
+Take a look on it at: [Pomodoro Timer](https://bosamatheus.github.io/pomodoro/index.html)
